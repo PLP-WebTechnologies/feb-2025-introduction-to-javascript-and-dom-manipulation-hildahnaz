@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive JavaScript Demo</title>
+    <style>
+        /* Main Styles */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+        
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f5f5f5;
+        }
+        
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        #output-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .element-box {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #ddd;
+            border-radius: 4px;
+        }
+        
+        /* Theme Styles */
+        .light-theme {
+            background-color: #ffffff;
+            color: #333333;
+        }
+        
+        .dark-theme {
+            background-color: #333333;
+            color: #ffffff;
+        }
+        
+        .dark-theme section {
+            background-color: #444444;
+            color: #ffffff;
+        }
+        
+        .dark-theme h1, .dark-theme h2 {
+            color: #ffffff;
+        }
+        
+        .colorful-theme {
+            background-color: #f0f8ff;
+            color: #800080;
+        }
+        
+        .colorful-theme section {
+            background-color: #ffe4e1;
+            border: 2px solid #ff69b4;
+        }
+        
+        .colorful-theme h1, .colorful-theme h2 {
+            color: #9932cc;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <h1>Interactive JavaScript Demo</h1>
+    
+    <section id="text-section">
+        <h2>Text Manipulation</h2>
+        <p id="output-text">This text will change when you click the button below.</p>
+        <button id="change-text-btn">Change Text</button>
+    </section>
+    
+    <section id="style-section">
+        <h2>Style Modification</h2>
+        <p>Click the buttons below to change the page theme:</p>
+        <button id="light-theme-btn">Light Theme</button>
+        <button id="dark-theme-btn">Dark Theme</button>
+        <button id="colorful-theme-btn">Colorful Theme</button>
+    </section>
+    
+    <section id="element-section">
+        <h2>Element Manipulation</h2>
+        <p>Click the buttons to add or remove elements:</p>
+        <button id="add-element-btn">Add Element</button>
+        <button id="remove-element-btn">Remove Element</button>
+        <div id="element-container"></div>
+    </section>
+    
+    <footer>
+        <p>Created with HTML5 and JavaScript</p>
+    </footer>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Text Manipulation
+            document.getElementById('change-text-btn').addEventListener('click', function() {
+                const textElement = document.getElementById('output-text');
+                const texts = [
+                    "The text has been changed!",
+                    "JavaScript is awesome!",
+                    "Interactive web development is fun!",
+                    "You clicked the button successfully!",
+                    "This is a dynamic text change."
+                ];
+                const randomText = texts[Math.floor(Math.random() * texts.length)];
+                textElement.textContent = randomText;
+            });
+            
+            // Style Modification
+            document.getElementById('light-theme-btn').addEventListener('click', function() {
+                document.body.className = 'light-theme';
+            });
+            
+            document.getElementById('dark-theme-btn').addEventListener('click', function() {
+                document.body.className = 'dark-theme';
+            });
+            
+            document.getElementById('colorful-theme-btn').addEventListener('click', function() {
+                document.body.className = 'colorful-theme';
+            });
+            
+            // Element Manipulation
+            let elementCount = 0;
+            
+            document.getElementById('add-element-btn').addEventListener('click', function() {
+                elementCount++;
+                const container = document.getElementById('element-container');
+                const newElement = document.createElement('div');
+                newElement.className = 'element-box';
+                newElement.textContent = `Element ${elementCount}`;
+                container.appendChild(newElement);
+            });
+            
+            document.getElementById('remove-element-btn').addEventListener('click', function() {
+                const container = document.getElementById('element-container');
+                if (container.lastChild) {
+                    container.removeChild(container.lastChild);
+                    if (elementCount > 0) {
+                        elementCount--;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
